@@ -36,6 +36,7 @@ rm -rf ./usr/share/vulkan/registry || true
 
 ln -s ../usr/share/ppsspp/assets ./bin
 ln -s ./usr/share ./
+ln -s ./"$ICON"   ./.DirIcon
 
 # ADD LIBRARIES
 wget "$LIB4BN" -O ./lib4bin
