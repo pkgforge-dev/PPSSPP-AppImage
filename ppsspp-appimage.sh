@@ -32,6 +32,8 @@ cp -rv /usr/share/vulkan  ./usr/share
 cp -rv /usr/share/X11     ./usr/share
 sed -i 's|/usr/lib/||g'   ./usr/share/vulkan/icd.d/*
 
+rm -rf ./usr/share/vulkan/registry || true
+
 ln -s ../usr/share/ppsspp/assets ./bin
 ln -s ./usr/share ./
 
