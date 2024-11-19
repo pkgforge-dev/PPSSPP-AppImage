@@ -48,6 +48,10 @@ echo "Preparing sharun..."
 ln -s ./bin/PPSSPPSDL ./AppRun
 ./sharun -g
 
+# debloat
+echo "Debloating AppImage"
+rm -f ./shared/lib/libgallium-* # what is this lib for? doesn't seem to break anything.
+
 # MAKE APPIMAGE WITH URUNTIME
 cd ..
 wget -q "$URUNTIME" -O ./uruntime
