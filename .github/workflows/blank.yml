@@ -19,7 +19,8 @@ jobs:
       if: always()
       run: |
         pacman -Syu --noconfirm base-devel curl desktop-file-utils git wget \
-          base-devel patchelf ppsspp strace xorg-server-xvfb llvm mesa vulkan-radeon
+          base-devel patchelf ppsspp strace xorg-server-xvfb llvm mesa \
+          vulkan-radeon vulkan-intel vulkan-nouveau
 
         # Artix repos don't have zsyc
         wget https://london.mirror.pkgbuild.com/extra/os/x86_64/zsync-0.6.2-5-x86_64.pkg.tar.zst
