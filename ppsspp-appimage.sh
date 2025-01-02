@@ -44,6 +44,9 @@ wget "$LIB4BN" -O ./lib4bin
 chmod +x ./lib4bin
 xvfb-run -d -- ./lib4bin -p -v -r -e -s /usr/bin/PPSSPPSDL /usr/bin/PPSSPPHeadless
 
+# For some reason most of libvulkan gets copied but not libvulkan.so.1
+cp -vn /usr/lib/libvulkan.so.1 ./shared/lib
+
 # Prepare sharun
 echo "Preparing sharun..."
 ln -s ./bin/PPSSPPSDL ./AppRun
