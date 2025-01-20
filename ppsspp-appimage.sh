@@ -33,7 +33,7 @@ ln -s ./usr/share ./
 # ADD LIBRARIES
 wget "$LIB4BN" -O ./lib4bin
 chmod +x ./lib4bin
-xvfb-run -d -- ./lib4bin -p -v -r -e -s \
+xvfb-run -d -- ./lib4bin -p -v -r -e -s -k \
 	/usr/bin/PPSSPPSDL \
 	/usr/bin/PPSSPPHeadless \
 	/usr/lib/libvulkan* \
