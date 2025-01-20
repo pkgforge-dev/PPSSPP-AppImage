@@ -18,7 +18,7 @@ URUNTIME=$(wget -q https://api.github.com/repos/VHSgunzo/uruntime/releases -O - 
 
 # Prepare AppDir
 mkdir -p ./"$PACKAGE"/AppDir/shared/lib \
-	./"$PACKAGE"/AppDir/etc \
+	./"$PACKAGE"/AppDir/usr/share \
 	./"$PACKAGE"/AppDir/bin
 cd ./"$PACKAGE"/AppDir
 
