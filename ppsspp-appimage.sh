@@ -18,34 +18,29 @@ URUNTIME=$(wget -q https://api.github.com/repos/VHSgunzo/uruntime/releases -O - 
 
 # Prepare AppDir
 mkdir -p ./"$PACKAGE"/AppDir/shared/lib \
-	./"$PACKAGE"/AppDir/usr/share/applications \
 	./"$PACKAGE"/AppDir/etc \
 	./"$PACKAGE"/AppDir/bin
 cd ./"$PACKAGE"/AppDir
 
-cp -v /usr/share/applications/$DESKTOP              ./usr/share/applications
-cp -v /usr/share/applications/$DESKTOP              ./
+cp -v /usr/share/applications/"$DESKTOP"            ./
 cp -v /usr/share/icons/hicolor/128x128/apps/"$ICON" ./
+ln -s ./"$ICON"   ./.DirIcon
 
 cp -rv /usr/share/ppsspp  ./usr/share
-cp -rv /usr/share/glvnd   ./usr/share
-cp -rv /usr/share/vulkan  ./usr/share
-cp -rv /usr/share/X11     ./usr/share
-sed -i 's|/usr/lib/||g'   ./usr/share/vulkan/icd.d/*
-
-rm -rf ./usr/share/vulkan/registry || true
-
 ln -s ../usr/share/ppsspp/assets ./bin
 ln -s ./usr/share ./
-ln -s ./"$ICON"   ./.DirIcon
 
 # ADD LIBRARIES
 wget "$LIB4BN" -O ./lib4bin
 chmod +x ./lib4bin
-xvfb-run -d -- ./lib4bin -p -v -r -e -s /usr/bin/PPSSPPSDL /usr/bin/PPSSPPHeadless
-
-# For some reason most of libvulkan gets copied but not libvulkan.so.1
-cp -vn /usr/lib/libvulkan.so.1 ./shared/lib
+xvfb-run -d -- ./lib4bin -p -v -r -e -s \
+	/usr/bin/PPSSPPSDL \
+	/usr/bin/PPSSPPHeadless \
+	/usr/lib/libvulkan* \
+	/usr/lib/libEGL* \
+	/usr/lib/libGL* \
+	/usr/lib/dri/* \
+	/usr/lib/pulseaudio/*
 
 # Prepare sharun
 echo "Preparing sharun..."
