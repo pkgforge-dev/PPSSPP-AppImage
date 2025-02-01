@@ -26,6 +26,15 @@ jobs:
         printf "\n[extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n" | tee -a /etc/pacman.conf
         pacman -Syu --noconfirm ppsspp zsync
 
+    - name: Install debloated llvm-libs
+      run: |
+        LLVM="$(wget https://api.github.com/repos/Samueru-sama/llvm-libs-debloated/releases -O - \
+          | sed 's/[()",{} ]/\n/g' | grep -oi "https.*very-minimal.pkg.tar.zst$" | head -1)"
+        wget "$LLVM" -O ./llvm-libs.pkg.tar.zst
+        pacman -U --noconfirm ./llvm-libs.pkg.tar.zst
+
+    - name: Make AppImage
+      run: |
         chmod +x ./*-appimage.sh && ./*-appimage.sh
         mkdir dist
         mv *.AppImage* dist/
