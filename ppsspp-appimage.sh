@@ -79,7 +79,12 @@ export PBUNDLE_OVERTAKE_PATH=1 PBUNDLE_EXTRACT_AND_RUN=1
 echo "Generating [dwfs]AppBundle..."
 ./pelf-dwfs --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
+     	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
 	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle"
+./pelf-sqfs --add-appdir ./AppDir \
+	    --appbundle-id="${PACKAGE}-${VERSION}" \
+     	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.sqfs.AppBundle"
 rm ./pelf-toolchain.sqfs.AppBundle
 
 echo "Generating zsync file..."
