@@ -17,14 +17,14 @@ URUNTIME=$(wget -q https://api.github.com/repos/VHSgunzo/uruntime/releases -O - 
 	| sed 's/[()",{} ]/\n/g' | grep -oi "https.*appimage.*dwarfs.*$ARCH$" | head -1)
 
 # Prepare AppDir
-mkdir -p ./"$PACKAGE"/AppDir/shared/lib \
-	./"$PACKAGE"/AppDir/usr/share \
-	./"$PACKAGE"/AppDir/bin
-cd ./"$PACKAGE"/AppDir
+mkdir -p ./AppDir/shared/lib \
+	./AppDir/usr/share \
+	./AppDir/bin
+cd ./AppDir
 
 cp -v /usr/share/applications/"$DESKTOP"            ./
 cp -v /usr/share/icons/hicolor/128x128/apps/"$ICON" ./
-ln -s ./"$ICON"   ./.DirIcon
+cp -v /usr/share/icons/hicolor/128x128/apps/"$ICON" ./.DirIcon
 
 cp -rv /usr/share/ppsspp  ./usr/share
 ln -s ../usr/share/ppsspp/assets ./bin
@@ -33,9 +33,10 @@ ln -s ./usr/share ./
 # ADD LIBRARIES
 wget "$LIB4BN" -O ./lib4bin
 chmod +x ./lib4bin
-xvfb-run -d -- ./lib4bin -p -v -r -e -s -k \
+xvfb-run -d -- ./lib4bin -p -v -e -s -k \
 	/usr/bin/PPSSPPSDL \
 	/usr/bin/PPSSPPHeadless \
+	/usr/lib/libSDL* \
 	/usr/lib/libvulkan* \
 	/usr/lib/libEGL* \
 	/usr/lib/libGL* \
@@ -69,8 +70,4 @@ echo "Generating AppImage..."
 
 echo "Generating zsync file..."
 zsyncmake *.AppImage -u *.AppImage
-
-mv ./*.AppImage* ../
-cd ..
-rm -rf ./"$PACKAGE"
 echo "All Done!"
