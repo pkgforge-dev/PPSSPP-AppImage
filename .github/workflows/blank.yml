@@ -40,11 +40,11 @@ jobs:
         pacman -U --noconfirm ./libxml2.pkg.tar.zst
         rm -f ./libxml2.pkg.tar.zst
 
-    - name: Make AppImage
+    - name: Make AppImage/AppBundle
       run: |
         chmod +x ./*-appimage.sh && ./*-appimage.sh
         mkdir dist
-        mv *.AppImage* dist/
+        mv *.AppImage* *.AppBundle* dist/
 
     - name: Check version file
       run: |
@@ -93,7 +93,7 @@ jobs:
         - name: Continuous Releaser
           uses: softprops/action-gh-release@v2
           with:
-            name: "PPSSPP AppImage ${{ env.APP_VERSION }}"
+            name: "PPSSPP ${{ env.APP_VERSION }}"
             tag_name: "${{ env.APP_VERSION }}"
             prerelease: false
             draft: false
@@ -101,6 +101,7 @@ jobs:
             make_latest: true
             files: |
               *.AppImage*
+              *.AppBundle*
           continue-on-error: false
 
         #Snapshot Release
