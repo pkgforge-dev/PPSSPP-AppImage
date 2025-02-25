@@ -86,6 +86,7 @@ echo "Generating [dwfs]AppBundle..."
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
      	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
 	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.sqfs.AppBundle"
+./pelf-dwfs -h || true
 rm ./pelf-toolchain.sqfs.AppBundle
 
 echo "Generating zsync file..."
