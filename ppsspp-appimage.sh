@@ -73,7 +73,7 @@ wget -qO ./pelf-toolchain.sqfs.AppBundle "https://github.com/pkgforge-dev/pelf/r
 chmod +x ./pelf-toolchain.sqfs.AppBundle
 ln -sfT ./pelf-toolchain.sqfs.AppBundle ./pelf-dwfs
 ln -sfT ./pelf-toolchain.sqfs.AppBundle ./pelf-sqfs
-export PBUNDLE_OVERTAKE_PATH=1 PBUNDLE_EXTRACT_AND_RUN=1
+export PBUNDLE_OVERTAKE_PATH=1 #PBUNDLE_EXTRACT_AND_RUN=1
 
 set -x
 # Generate .dwfs.Appbundle
