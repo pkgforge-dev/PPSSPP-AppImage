@@ -79,11 +79,12 @@ set -x
 ls -lsh ./pelf-*
 ./pelf-dwfs -h || true
 # Generate .dwfs.Appbundle
-echo "Generating [dwfs]AppBundle..."
+echo "Generating [dwfs]AppBundle...(POSIX SH runtime)"
 ./pelf-dwfs --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
-     	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
-	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle"
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle" #\
+     	    #--custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime"
+echo "Generating [sqfs]AppBundle...(Go runtime)"
 ./pelf-sqfs --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
      	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
