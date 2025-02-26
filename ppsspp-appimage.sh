@@ -68,6 +68,31 @@ echo "Generating AppImage..."
 	--header uruntime \
 	-i ./AppDir -o "$PACKAGE"-"$VERSION"-anylinux-"$ARCH".AppImage
 
+# Set up the PELF toolchain
+wget -qO ./pelf-toolchain.sqfs.AppBundle "https://github.com/pkgforge-dev/pelf/releases/latest/download/pelf-toolchain.sqfs.AppBundle"
+chmod +x ./pelf-toolchain.sqfs.AppBundle
+ln -sfT ./pelf-toolchain.sqfs.AppBundle ./pelf-dwfs
+ln -sfT ./pelf-toolchain.sqfs.AppBundle ./pelf-sqfs
+export PBUNDLE_OVERTAKE_PATH=1 PBUNDLE_EXTRACT_AND_RUN=1
+
+set -x
+ls -lsh ./pelf-*
+./pelf-dwfs -h || true
+# Generate .dwfs.Appbundle
+echo "Generating [dwfs]AppBundle...(POSIX SH runtime)"
+./pelf-dwfs --add-appdir ./AppDir \
+	    --appbundle-id="${PACKAGE}-${VERSION}" \
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle" #\
+     	    #--custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime"
+echo "Generating [sqfs]AppBundle...(Go runtime)"
+./pelf-sqfs --add-appdir ./AppDir \
+	    --appbundle-id="${PACKAGE}-${VERSION}" \
+     	    --custom-runtime="\$SELF_TEMPDIR/bin/appbundle-runtime" \
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.sqfs.AppBundle"
+rm ./pelf-toolchain.sqfs.AppBundle
+
 echo "Generating zsync file..."
 zsyncmake *.AppImage -u *.AppImage
+zsyncmake *.AppBundle -u *.AppBundle
+
 echo "All Done!"
