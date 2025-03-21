@@ -11,10 +11,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-22.04
-    permissions: write-all
     container:
       image: artixlinux/artixlinux:latest
-      #options: --privileged
     steps:
     - uses: actions/checkout@v4
 
@@ -24,7 +22,7 @@ jobs:
         sed -i 's/DownloadUser/#DownloadUser/g' /etc/pacman.conf
         pacman -Syu --noconfirm base-devel strace patchelf curl wget \
           desktop-file-utils git artix-archlinux-support llvm mesa xorg-server-xvfb \
-          vulkan-radeon vulkan-intel vulkan-nouveau fuse2 fuse3
+          vulkan-radeon vulkan-intel vulkan-nouveau
         pacman-key --init && pacman-key --populate archlinux
         printf "\n[extra]\nInclude = /etc/pacman.d/mirrorlist-arch\n" | tee -a /etc/pacman.conf
         pacman -Syu --noconfirm ppsspp zsync
