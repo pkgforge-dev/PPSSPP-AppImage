@@ -71,15 +71,14 @@ echo "Generating AppImage..."
 # Set up the PELF toolchain
 wget -qO ./pelf "https://github.com/xplshn/pelf/releases/latest/download/pelf_$(uname -m)" && chmod +x ./pelf
 
-# Generate .dwfs.Appbundle
-echo "Generating [dwfs]AppBundle...(Go runtime)"
-./pelf --add-appdir ./AppDir \
-	    --appbundle-id="${PACKAGE}-${VERSION}" \
-	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle" # --compression "--set-owner 0 --set-group 0 --no-history --no-create-timestamp -C zstd:level=22 -S24 -B16"
 echo "Generating [sqfs]AppBundle...(Go runtime)"
 ./pelf --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
 	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.sqfs.AppBundle"
+echo "Generating [dwfs]AppBundle...(Go runtime)"
+./pelf --add-appdir ./AppDir \
+	    --appbundle-id="${PACKAGE}-${VERSION}" \
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle" # --compression "--set-owner 0 --set-group 0 --no-history --no-create-timestamp -C zstd:level=22 -S24 -B16"
 
 echo "Generating zsync file..."
 zsyncmake *.AppImage -u *.AppImage
