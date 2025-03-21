@@ -71,7 +71,6 @@ echo "Generating AppImage..."
 # Set up the PELF toolchain
 wget -qO ./pelf "https://github.com/xplshn/pelf/releases/latest/download/pelf_$(uname -m)" && chmod +x ./pelf
 
-wget -qO- "https://raw.githubusercontent.com/xplshn/dbin/master/stubdl" | sh -s -- run squashfs-tools/mksquashfs --help
 echo "Generating [sqfs]AppBundle...(Go runtime)"
 strace ./pelf --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
