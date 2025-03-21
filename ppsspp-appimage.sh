@@ -68,6 +68,15 @@ echo "Generating AppImage..."
 	--header uruntime \
 	-i ./AppDir -o "$PACKAGE"-"$VERSION"-anylinux-"$ARCH".AppImage
 
+wget -qO ./pelf "https://github.com/xplshn/pelf/releases/latest/download/pelf_$(uname -m)" && chmod +x ./pelf
+echo "Generating [dwfs]AppBundle...(Go runtime)"
+./pelf --add-appdir ./AppDir \
+	    --appbundle-id="${PACKAGE}-${VERSION}" \
+     	    --compression "-C zstd:level=22 -S24 -B64" \
+	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle"
+
 echo "Generating zsync file..."
 zsyncmake *.AppImage -u *.AppImage
+zsyncmake *.AppBundle -u *.AppBundle
+
 echo "All Done!"
