@@ -72,7 +72,7 @@ echo "Generating AppImage..."
 wget -qO ./pelf "https://github.com/xplshn/pelf/releases/latest/download/pelf_$(uname -m)" && chmod +x ./pelf
 
 echo "Generating [sqfs]AppBundle...(Go runtime)"
-strace ./pelf --add-appdir ./AppDir \
+./pelf --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
 	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.sqfs.AppBundle"
 echo "Generating [dwfs]AppBundle...(Go runtime)"
