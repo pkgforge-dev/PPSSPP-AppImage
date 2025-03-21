@@ -72,7 +72,7 @@ wget -qO ./pelf "https://github.com/xplshn/pelf/releases/latest/download/pelf_$(
 echo "Generating [dwfs]AppBundle...(Go runtime)"
 ./pelf --add-appdir ./AppDir \
 	    --appbundle-id="${PACKAGE}-${VERSION}" \
-     	    --compression "--set-owner 0 --set-group 0 --no-history --no-create-timestamp -C zstd:level=22 -S32 -B32" \
+     	    --compression "-C zstd:level=22 -B32" \
 	    --output-to "${PACKAGE}-${VERSION}-anylinux-${ARCH}.dwfs.AppBundle"
 
 echo "Generating zsync file..."
