@@ -13,9 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     container: ghcr.io/pkgforge-dev/archlinux:latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: get dependencies
+    - name: Get dependencies
       if: always()
       run: |
         chmod +x ./get-dependencies.sh && ./get-dependencies.sh
