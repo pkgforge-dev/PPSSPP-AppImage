@@ -21,10 +21,13 @@ pacman -Syu --noconfirm \
 	curl \
 	desktop-file-utils \
 	git \
-	llvm \
+	libxss \
 	mesa \
 	patchelf \
+	pipewire-audio \
 	ppsspp \
+	pulseaudio \
+	pulseaudio-alsa \
 	strace \
 	vulkan-intel \
 	vulkan-nouveau \
