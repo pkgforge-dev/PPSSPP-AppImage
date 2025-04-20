@@ -24,7 +24,10 @@ pacman -Syu --noconfirm \
 	llvm \
 	mesa \
 	patchelf \
+	pipewire-audio \
 	ppsspp \
+	pulseaudio \
+	pulseaudio-alsa \
 	strace \
 	vulkan-intel \
 	vulkan-nouveau \
