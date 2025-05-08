@@ -3,7 +3,7 @@
 set -eu
 
 PACKAGE=ppsspp
-DESKTOP=ppsspp-sdl.desktop
+DESKTOP=PPSSPPSDL.desktop
 ICON=ppsspp.png
 
 export ARCH="$(uname -m)"
@@ -21,8 +21,8 @@ mkdir -p ./AppDir/shared/lib \
 cd ./AppDir
 
 cp -v /usr/share/applications/"$DESKTOP"            ./
-cp -v /usr/share/icons/hicolor/128x128/apps/"$ICON" ./
-cp -v /usr/share/icons/hicolor/128x128/apps/"$ICON" ./.DirIcon
+cp -v /usr/share/icons/hicolor/256x256/apps/"$ICON" ./
+cp -v /usr/share/icons/hicolor/256x256/apps/"$ICON" ./.DirIcon
 
 cp -rv /usr/share/ppsspp  ./usr/share
 ln -s ../usr/share/ppsspp/assets ./bin
