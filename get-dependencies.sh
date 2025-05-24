@@ -20,20 +20,35 @@ pacman -Syu --noconfirm \
 	base-devel \
 	curl \
 	desktop-file-utils \
+	fontconfig \
+	gcc-libs \
 	git \
+	glew \
+	glibc \
+	hicolor-icon-theme \
+	libglvnd \
+	libpng \
 	libxss \
+	libzip \
 	mesa \
+	miniupnpc \
+	openxr \
 	patchelf \
 	pipewire-audio \
 	ppsspp \
 	pulseaudio \
 	pulseaudio-alsa \
+	sdl2 \
+	sdl2_ttf \
+	snappy \
 	strace \
 	vulkan-intel \
 	vulkan-nouveau \
 	vulkan-radeon \
 	wget \
 	xorg-server-xvfb \
+	zlib \
+	zstd \
 	zsync
 
 echo "Installing debloated pckages..."
