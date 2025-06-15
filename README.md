@@ -1,5 +1,10 @@
 # PPSSPP-AppImage
 
+# This AppImage is now available directly on ppsspp: https://github.com/hrydgard/ppsspp/pull/20464
+
+-------------------------------------------------------------------------------------------------------------------
+
+
 AppImage made using [sharun](https://github.com/VHSgunzo/sharun), which makes it extremely easy to turn any binary into a portable package without using containers or similar tricks.
 
 **This AppImage bundles everything and should work on any linux distro, even on musl based ones.**
